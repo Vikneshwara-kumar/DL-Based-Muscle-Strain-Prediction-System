@@ -6,5 +6,7 @@ project/
 │   └──preprocessing.py
 │   └──model.py
 │   └──main.py
+├── Inference
+│   └──Inference.py
 ├── requirements.txt
 └── setup_environment.sh

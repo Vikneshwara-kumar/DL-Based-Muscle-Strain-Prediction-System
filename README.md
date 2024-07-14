@@ -63,7 +63,8 @@ chmod +x setup_environment.sh
 ./setup_environment.sh
 ```
 
-## Usage
+## Usage 
+### Model Training
 1.  **Prepare the Data:** Ensure your dataset is available in the Dataset/Train.csv file.
 2.  **Run the Main Script:** Execute the main script to start the training process.
 ```
@@ -74,6 +75,22 @@ python main.py
 *   confusion_matrix.png: Heatmap of the confusion matrix.
 *   lstm_model.keras: Trained LSTM model.
 *   scaler.pkl: Scaler used for data preprocessing.
+
+### Model Deployement
+####    Build and Run the Docker Container,Navigate to the project directory: 
+```
+cd DL-Based-Muscle-Strain-Prediction-System/Inference
+```
+In your terminal, navigate to your project directory and run the following command to build the Docker image:
+```
+docker build -t muscle-stress-prediction .
+```
+####    Run the Docker Container:
+
+Use the following command to run the Docker container, providing the necessary environment variables:
+```
+docker run -e KAFKA_BROKER='192.168.50.234:29093' -e NORMALIZED_DATA_TOPIC='extracted_features' -e PREDICTION_TOPIC='predictions' -p 5001:5001 muscle-stress-prediction
+```
 
 ## Features
 *   Data Preprocessing: Scales and segments time-series data for model training.

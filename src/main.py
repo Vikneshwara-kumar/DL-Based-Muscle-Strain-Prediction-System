@@ -6,7 +6,9 @@ from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 import pickle
 
 from preprocessing import load_and_preprocess_data
-from model import build_model
+from model import build_model_lstm as build_model
+
+
 
 # Define parameters
 batch_size = 32
@@ -39,7 +41,7 @@ y_pred_classes = np.argmax(y_pred, axis=1)  # Convert softmax output to class la
 plt.plot(history.history['loss'], label='Training loss')
 plt.plot(history.history['val_loss'], label='Validation loss')
 plt.legend()
-plt.savefig('results/training_validation_loss.png')
+plt.savefig('/root/DL-Based-Muscle-Strain-Prediction-System/results/training_validation_loss.png')
 plt.show()
 
 # Calculate test accuracy
@@ -55,13 +57,13 @@ sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=['Restin
 plt.xlabel('Predicted Labels')
 plt.ylabel('True Labels')
 plt.title('Confusion Matrix')
-plt.savefig('results/confusion_matrix.png')
+plt.savefig('/root/DL-Based-Muscle-Strain-Prediction-System/results/confusion_matrix.png')
 plt.show()
 
 # Save the model
-model.save('results/lstm_model.keras')
+model.save('/root/DL-Based-Muscle-Strain-Prediction-System/results/lstm_model.keras')
 
 # Save the scaler
-with open('results/scaler.pkl', 'wb') as file:
+with open('/root/DL-Based-Muscle-Strain-Prediction-System/results/scaler.pkl', 'wb') as file:
     pickle.dump(scaler, file)
 print("Scaler has been saved as 'results/scaler.pkl'")

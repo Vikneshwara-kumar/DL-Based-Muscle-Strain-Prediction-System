@@ -1,0 +1,8 @@
+Flask
+kafka-python
+tensorflow
+numpy
+influxdb-client
+scikit-learn
+pandas
+psutil

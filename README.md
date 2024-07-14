@@ -77,6 +77,9 @@ python main.py
 *   scaler.pkl: Scaler used for data preprocessing.
 
 ### Model Deployement
+The app take the input from the kafka broker and input features musted be extracted and published as a kafka topic 
+KAFKA_BROKER='your broker address:xxxxx' -e NORMALIZED_DATATOPIC='your extracted features'.
+
 ####    Build and Run the Docker Container,Navigate to the project directory: 
 ```
 cd DL-Based-Muscle-Strain-Prediction-System/Inference
@@ -89,7 +92,7 @@ docker build -t muscle-stress-prediction .
 
 Use the following command to run the Docker container, providing the necessary environment variables:
 ```
-docker run -e KAFKA_BROKER='192.168.50.234:29093' -e NORMALIZED_DATA_TOPIC='extracted_features' -e PREDICTION_TOPIC='predictions' -p 5001:5001 muscle-stress-prediction
+docker run -e KAFKA_BROKER='your broker address:29093' -e NORMALIZED_DATATOPIC='your extracted features' -e PREDICTION_TOPIC='predictions' -p 5001:5001 muscle-stress-prediction
 ```
 
 ## Features

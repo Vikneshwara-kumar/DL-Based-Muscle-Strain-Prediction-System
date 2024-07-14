@@ -12,18 +12,22 @@ The project involves the following key components:
 * **Real-Time Prediction**: Implementing the trained model in a real-time environment to provide continuous stress predictions.
 * **Platform Integration**: Integrating the predictive model into a digital platform for real-time monitoring and performance evaluation of shoulder-supported exoskeletons.
 
+
+
 ## Table of Contents
 1.  [Introduction](#introduction)
 2.  [Overview](#Overview)
 3.  [Scope](#Scope)
 4.  [Objectives](#Objectives)
-5.  [Installation](#Installation)
-6.  [Usage](#Usage)
-7.  [Features](#Features)
-8.  [Testing](#Testing)
-9.  [Contributing](#Contributing)
-10. [License](#License)
-11. [Acknowledgements](#Acknowledgements)
+5.  [LSTM_Model_Overview](#LSTM_Model_Overview)
+6.  [Architecture_Diagram](#Architecture_Diagram)
+7.  [Installation](#Installation)
+8.  [Usage](#Usage)
+9.  [Features](#Features)
+10.  [Testing](#Testing)
+11.  [Contributing](#Contributing)
+12. [License](#License)
+13. [Acknowledgements](#Acknowledgements)
 
 ## Scope
 The scope of this project includes the development and integration of a real-time muscle stress prediction model into a comprehensive digital platform designed for exoskeleton performance evaluation.
@@ -34,6 +38,11 @@ The scope of this project includes the development and integration of a real-tim
 * **Platform Development:** Integrate the model into a digital platform to assess exoskeleton performance.
 * **User-Friendly Interface:** Create an intuitive interface for easy interaction with the prediction system.
 
+## LSTM Model Overview
+The Long Short-Term Memory (LSTM) model is a type of recurrent neural network (RNN) that is particularly effective for learning from sequences of data. In this project, the LSTM model is used to predict muscle stress by analyzing time-series data collected from sensors. The model consists of an LSTM layer followed by dense layers that process the output and produce the final predictions. This architecture allows the model to capture temporal dependencies and patterns in the data, leading to accurate real-time predictions.
+
+## Architecture Diagram
+![Architecture Diagram](images/architecture_diagram.png)
 
 ## Installation
 

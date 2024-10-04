@@ -1,0 +1,60 @@
+project/
+│
+├── Dataset
+│   └── Dataset.csv
+│
+├── Deployment
+│   ├── app.py
+│   ├── Directory structure.css  # Presumably CSS file for web front-end
+│   ├── Dockerfile               # Dockerfile for containerizing the app
+│   ├── lstm.keras               # LSTM model file
+│   ├── requirements.txt         # Python dependencies for Deployment
+│   ├── scaler.pkl               # Scaler object for pre-processing
+│
+├── images
+│   └── architecture_diagram.png # Architecture diagram image
+│
+├── MicroService
+│   ├── ETL-Service.py           # ETL microservice script
+│   ├── Feature_extractor.py     # Feature extraction script
+│   ├── Prediction_service_GRU.py  # Prediction service using GRU model
+│   ├── Prediction_service_LSTM.py  # Prediction service using LSTM model
+│   ├── Prediction_service_Transformer.py  # Prediction service using Transformer model
+│
+├── mlruns
+│   ├── .trash                   # Deleted runs/artifacts
+│   ├── 0                        # MLFlow run 0 artifacts
+│   └── 735183122949365504        # MLFlow experiment run artifacts
+│
+├── models
+│   ├── GRU.keras                # GRU model file
+│   ├── lstm.keras               # LSTM model file
+│   ├── scaler.pkl               # Scaler for preprocessing
+│   ├── scalerT.pkl              # Transformer scaler
+│   ├── Transformer.h5           # Transformer model file
+│   └── Transformer.keras        # Transformer model (alternative format)
+├── Notebooks
+│   ├── GRU.ipynb                    # Jupyter Notebook for GRU model
+│   ├── LSTM.ipynb                   # Jupyter Notebook for LSTM model
+│   └── Transformer.ipynb            # Jupyter Notebook for Transformer model
+│
+├── results
+│   └──                             # This folder seems to be prepared for storing results (possibly logs, outputs)
+│
+├── src
+│   ├── __pycache__/                 # Python cache folder
+│   ├── main.py                      # Main script for running the app or experiments
+│   ├── metrics.py                   # Script for evaluating metrics
+│   ├── mlflow.py                    # MLFlow integration or setup
+│   ├── model.py                     # Script related to model loading, training, or inference
+│   ├── preprocessing.py             # Script for preprocessing steps
+│   ├── visualization.py             # Script for visualizing results
+│
+├── Tutorials
+│   ├── Tutorials.md                 # Markdown file for project tutorials and guides
+│
+├── Directory Structure.xml           # Possibly used to define the directory structure (for documentation or analysis)
+├── LICENSE                           # Project license file
+├── README.md                         # README file for the project
+├── requirements.txt                  # Python dependencies for the project
+├── startup.sh                        # Shell script to start the project

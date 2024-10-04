@@ -11,10 +11,10 @@ python3 --version
 pip3 --version
 
 # Create a virtual environment
-python3 -m venv emg_env
+python3 -m venv env
 
 # Activate the virtual environment
-source emg_env/bin/activate
+source env/bin/activate
 
 # Install dependencies from requirements.txt
 pip install --upgrade pip

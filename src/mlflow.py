@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
-import pickle
 from preprocessing import load_and_preprocess_data
 from model import build_model_lstm as build_model
 import mlflow
 import mlflow.sklearn
-import joblib
+from visualization import visualization 
+from metrics import metric
 
 
 # Define parameters
@@ -17,7 +17,7 @@ epochs = 50
 validation_split = 0.1
 
 # File paths and columns
-file_path = 'Dataset/Dataset.csv'
+file_path = '/root/Real-Time-Muscle-strain-prediction-in-microservice-architecture/Dataset/Dataset.csv'
 feature_columns = ['RMS','MAV','SSC','WL','MNF','MDF','IMDF','IMPF','PSD','MNP','ZC','stft_feature_1','stft_feature_2','stft_feature_3','stft_feature_4','stft_feature_5','stft_feature_6']
 label_column = ['Label']
 
@@ -50,11 +50,15 @@ with mlflow.start_run():
     # Evaluate model
     predictions = model.predict(X_test)
     predictions_class = np.argmax(predictions, axis=1)
-    accuracy = accuracy_score(np.argmax(Y_test, axis=1), predictions_class)*100 
-    print(f"Model Accuracy: : {accuracy}")
-    accuracy = accuracy_score(np.argmax(Y_test, axis=1), predictions_class)
+    accuracy = accuracy_score(np.argmax(Y_test, axis=1), predictions_class)*100
     print(f"Model Accuracy: : {accuracy}")
     print(type(accuracy))
+
+    # Plot training and validation loss
+    visualization(history)
+    
+    # Generate confusion matrix
+    metric(Y_test, predictions_class)
 
     # Log accuracy metric
     mlflow.log_metric("accuracy", accuracy)

@@ -1,17 +1,18 @@
-from flask import Flask, jsonify
+from fastapi import FastAPI
 from kafka import KafkaConsumer, KafkaProducer
 import json
 import threading
 from tensorflow.keras.models import load_model
 import numpy as np
 import time
+import os
 from sklearn.preprocessing import StandardScaler
 import pickle
 import pandas as pd
 
-app = Flask(__name__)
+app = FastAPI()
 
-feature_columns = ['RMS','MAV','SSC','WL','MNF','MDF','IMDF','IMPF','PSD','MNP','ZC','stft_feature_1','stft_feature_2','stft_feature_3','stft_feature_4','stft_feature_5','stft_feature_6']
+feature_columns = ['RMS', 'MAV', 'SSC', 'WL', 'MNF', 'MDF', 'IMDF', 'IMPF', 'PSD', 'MNP', 'ZC', 'stft_feature_1', 'stft_feature_2', 'stft_feature_3', 'stft_feature_4', 'stft_feature_5', 'stft_feature_6']
 
 # Load the model and scaler
 model = load_model('/app/Inference/lstm.keras')
@@ -27,10 +28,10 @@ PREDICTION_TOPIC = os.environ.get('PREDICTION_TOPIC', 'predictions')
 consumer = KafkaConsumer(
     NORMALIZED_DATA_TOPIC,
     bootstrap_servers=[KAFKA_BROKER],
-    group_id='200',  # Specify the consumer group ID
-    auto_offset_reset='latest',  # Set the offset to the beginning of the topic
-    enable_auto_commit=True,  # Enable auto commit offsets
-    auto_commit_interval_ms=1000,  # Set auto commit interval (in milliseconds)
+    group_id='200',
+    auto_offset_reset='latest',
+    enable_auto_commit=True,
+    auto_commit_interval_ms=1000,
     value_deserializer=lambda m: json.loads(m.decode('utf-8'))
 )
 
@@ -67,8 +68,13 @@ def consume_and_process():
             print("Predicted Strain Level is:", result)
             df_ary = pd.DataFrame()
 
-thread = threading.Thread(target=consume_and_process)
-thread.start()
+# Define an API endpoint to trigger data processing manually
+@app.post("/start-processing/")
+async def start_processing():
+    thread = threading.Thread(target=consume_and_process)
+    thread.start()
+    return {"message": "Processing started"}
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5002)
